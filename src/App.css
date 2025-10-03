@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 @font-face {
   font-family: 'Future Z';
@@ -33,11 +33,54 @@ ul {
   margin: 40px auto;
   max-width: 3000px;
   overflow: visible;
-  background: linear-gradient(135deg, rgba(11, 192, 237, 0.536), rgba(210, 22, 44, 0.451), rgba(156, 163, 175, 0.02));
+  /* ========================================
+     WIREFRAME NETWORK SYSTEM
+     ======================================== */
+  /* Creates a node-based wireframe connecting card centers */
+  
+  background-image: 
+    repeating-linear-gradient(0deg, transparent 0%, #ff0080 5%, #ff4000 8%, #ff8000 10%, #ffff00 12%, #ffffff 15%, #80ff00 18%, #00ff80 20%, #00ffff 22%, #0080ff 25%, #8000ff 28%, transparent 35%),
+    repeating-linear-gradient(0deg, transparent 0%, #8000ff 5%, #ff0080 8%, #ff4000 10%, #ff8000 12%, #ffffff 15%, #ffff00 18%, #80ff00 20%, #00ff80 22%, #00ffff 25%, #0080ff 28%, transparent 35%),
+    repeating-linear-gradient(0deg, transparent 0%, #0080ff 5%, #00ffff 8%, #00ff80 10%, #80ff00 12%, #ffffff 15%, #ffff00 18%, #ff8000 20%, #ff4000 22%, #ff0080 25%, #8000ff 28%, transparent 35%),
+    repeating-linear-gradient(0deg, transparent 0%, #ff00ff 8%, #00ffff 12%, #ffffff 15%, #ffff00 18%, #ff0000 22%, transparent 30%),
+    repeating-linear-gradient(0deg, transparent 0%, #00ff00 8%, #ff8000 12%, #ffffff 15%, #0080ff 18%, #ff0080 22%, transparent 30%),
+    repeating-linear-gradient(90deg, transparent 0%, #ff0080 5%, #ff4000 8%, #ff8000 10%, #ffff00 12%, #ffffff 15%, #80ff00 18%, #00ff80 20%, #00ffff 22%, #0080ff 25%, #8000ff 28%, #ff0080 30%, #ff4000 32%, transparent 40%),
+    repeating-linear-gradient(90deg, transparent 0%, #8000ff 5%, #0080ff 8%, #00ffff 10%, #00ff80 12%, #ffffff 15%, #80ff00 18%, #ffff00 20%, #ff8000 22%, #ff4000 25%, #ff0080 28%, #8000ff 30%, #0080ff 32%, transparent 40%),
+    linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+  
+  /* ========================================
+     WIREFRAME LINE SIZING
+     ======================================== */
+  background-size: 
+    /* Vertical line sizes - wider for visible beam effect */
+    30px 100%, 30px 100%, 30px 100%,     /* Main columns - doubled width for beam visibility */
+    25px 100%, 25px 100%,               /* Secondary columns - slightly smaller */
+    /* Horizontal line sizes - thicker beams to match vertical lines */
+    80% 30px, 80% 30px,                  /* Top and bottom rows - same thickness as main vertical beams */
+    /* Background gradient size */
+    100% 100%;                        /* Container background */
+  
+  /* ========================================
+     WIREFRAME LINE POSITIONING
+     ======================================== */
+  background-position: 
+    /* Vertical line positions (horizontal placement, top-aligned) */
+    11% 0, 50% 0, 89% 0,              /* Main columns: left, center, right */
+    30.5% 0, 69.5% 0,                 /* Secondary columns: between main columns */
+    /* Horizontal line positions (top line shifted right) */
+    20% 29%, 11% 76%,                 /* Top row shifted right, bottom row at left card edge */
+    /* Background gradient position */
+    0 0;                              /* Container background origin */
+  background-repeat: no-repeat;
+  /* ========================================
+     WIREFRAME LINE ANIMATIONS
+     ======================================== */
+  /* Animate only the repeating gradient patterns along the lines */
+  animation: wireframeLinesFlow 10s ease-in-out infinite;
   border-radius: 0;
   border: 2px solid rgba(75, 85, 99, 0.4);
   box-shadow: 
-    0 0 30px rgba(75, 85, 99, 0.2),
+    0 0 30px rgba(16, 107, 235, 0.2),
     0 0 50px rgba(107, 114, 128, 0.1),
     inset 0 2px 0 rgba(255, 255, 255, 0.05),
     inset 0 -2px 0 rgba(0, 0, 0, 0.2);
@@ -61,7 +104,7 @@ ul::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(0, 14, 20, 0.921), rgba(139, 92, 246, 0.03), rgba(156, 163, 175, 0.02));
+  background: linear-gradient(45deg, rgba(29, 186, 8, 0.921), rgba(139, 92, 246, 0.03), rgba(156, 163, 175, 0.02));
   clip-path: polygon(
     35px 0,
     calc(100% - 35px) 0,
@@ -106,6 +149,26 @@ ul::after {
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+/* ========================================
+   WIREFRAME LINES ANIMATION
+   ======================================== */
+@keyframes wireframeLinesFlow {
+  0% {
+    background-position: 
+      11% 0%, 50% 0%, 89% 0%,        /* Vertical lines start position - flow downward */
+      30.5% 0%, 69.5% 0%,            /* Secondary vertical lines - flow downward */
+      0% 29%, 100% 76%,              /* Horizontal lines start - top flows right, bottom flows left */
+      0 0;                           /* Background gradient (unchanged) */
+  }
+  100% {
+    background-position: 
+      11% 100%, 50% 100%, 89% 100%,  /* Vertical lines end position - flow downward */
+      30.5% 100%, 69.5% 100%,        /* Secondary vertical lines - flow downward */
+      100% 29%, 0% 76%,              /* Horizontal lines end - top flows right, bottom flows left */
+      0 0;                           /* Background gradient (unchanged) */
   }
 }
 
@@ -191,7 +254,7 @@ li p {
 li p:first-of-type {
   color: #ff6b35;
   text-shadow: 
-    0 0 12px #ff6b35,
+    0 0 12px #fc0ea9,
     0 0 18px #ea580c;
 }
 
@@ -254,9 +317,6 @@ li button::after {
 @keyframes borderGradientFlow {
   0%, 100% {
     background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
   }
   50% {
     background-position: 100% 50%;
@@ -394,11 +454,6 @@ h1 {
   50% { opacity: 0.7; }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Large screens (desktops) - 3 columns */
@@ -449,15 +504,6 @@ h1 {
   
   li:has(img:hover) {
     z-index: 999;
-  }
-}
-
-@keyframes borderGradientFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
   }
 }
 

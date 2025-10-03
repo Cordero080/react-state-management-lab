@@ -130,15 +130,15 @@ const App = () => {
   const [zombieFighters, setZombieFighters] = useState(fighters)
 
 const handleAddFighter = (fighter) => {
-  // TEMPORARILY DISABLED: Random name generator
-  // const roleNames = fighterNames[fighter.role];
-  // const randomName = roleNames[Math.floor(Math.random() * roleNames.length)];
+  // Get random name from the role's name array
+  const roleNames = fighterNames[fighter.role];
+  const randomName = roleNames[Math.floor(Math.random() * roleNames.length)];
   
-  // Create new fighter with original name and unique ID
+  // Create new fighter with random name and unique ID
   const newFighter = {
     ...fighter,
     id: Date.now(), // Unique ID based on timestamp
-    // name: randomName // DISABLED - using original name instead
+    name: randomName
   };
   
   //.1 Adding to the crew

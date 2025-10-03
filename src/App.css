@@ -33,57 +33,25 @@ ul {
   margin: 40px auto;
   max-width: 3000px;
   overflow: visible;
+  /* Remove custom properties - using background-position instead */
   /* ========================================
      ELECTRIC GRID BACKGROUND SYSTEM
      ======================================== */
   /* Responsive electric grid with moving spectral gradients */
   
-  background-image: 
-    /* Vertical grid lines with moving spectral gradients */
-    repeating-linear-gradient(90deg, 
-      transparent 0px, 
-      transparent 48px, 
-      rgba(0, 255, 255, 0.4) 49px, 
-      rgba(255, 0, 128, 0.6) 50px, 
-      rgba(0, 255, 255, 0.4) 51px, 
-      transparent 52px, 
-      transparent 100px
-    ),
-    /* Horizontal grid lines with moving spectral gradients */
-    repeating-linear-gradient(0deg, 
-      transparent 0px, 
-      transparent 48px, 
-      rgba(128, 0, 255, 0.4) 49px, 
-      rgba(255, 255, 0, 0.6) 50px, 
-      rgba(128, 0, 255, 0.4) 51px, 
-      transparent 52px, 
-      transparent 100px
-    ),
-    /* Base cyberpunk background */
-    linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+  /* Background moved to ::before pseudo-element */
   
   /* ========================================
      ELECTRIC GRID SIZING AND POSITIONING
      ======================================== */
-  background-size: 
-    100px 100%,                       /* Vertical grid spacing */
-    100% 100px,                       /* Horizontal grid spacing */
-    100% 100%;                        /* Background gradient size */
-  
-  background-position: 
-    0 0,                              /* Vertical grid start */
-    0 0,                              /* Horizontal grid start */
-    center center;                    /* Background gradient center */
-  
-  background-repeat: repeat, repeat, no-repeat;
+  /* Background properties moved to ::before pseudo-element */
   
   /* ========================================
      ELECTRIC GRID ANIMATIONS
      ======================================== */
-  /* Animated spectral gradients flowing through the grid */
-  animation: electricGridFlow 8s linear infinite;
+  /* Remove animation from main container to protect card images */
   border-radius: 0;
-  border: 2px solid rgba(75, 85, 99, 0.4);
+  border: 2px solid rgba(13, 102, 227, 0.4);
   box-shadow: 
     0 0 30px rgba(16, 107, 235, 0.2),
     0 0 50px rgba(107, 114, 128, 0.1),
@@ -109,7 +77,67 @@ ul::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(29, 186, 8, 0.921), rgba(139, 92, 246, 0.03), rgba(156, 163, 175, 0.02));
+  z-index: -1;
+  /* Move all background properties here */
+  background-image: 
+    /* Fixed vertical grid lines */
+    repeating-linear-gradient(90deg, 
+      transparent 0px, 
+      transparent 48px, 
+      rgba(0, 255, 255, 0.5) 49px, 
+      rgba(0, 255, 255, 0.8) 50px, 
+      rgba(0, 255, 255, 0.5) 51px, 
+      transparent 52px, 
+      transparent 100px
+    ),
+    /* Fixed horizontal grid lines */
+    repeating-linear-gradient(0deg, 
+      transparent 0px, 
+      transparent 48px, 
+      rgba(255, 0, 128, 0.5) 49px, 
+      rgba(255, 0, 128, 0.8) 50px, 
+      rgba(255, 0, 128, 0.5) 51px, 
+      transparent 52px, 
+      transparent 100px
+    ),
+    /* Multiple radial gradients for smooth color shifts */
+    radial-gradient(circle at 20% 20%, 
+      rgba(5, 194, 242, 0.6) 0%, 
+      rgba(251, 8, 36, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 80% 30%, 
+      rgba(251, 8, 36, 0.6) 0%, 
+      rgba(133, 17, 235, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 70% 80%, 
+      rgba(133, 17, 235, 0.6) 0%, 
+      rgba(5, 194, 242, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 30% 70%, 
+      rgba(5, 194, 242, 0.6) 0%, 
+      rgba(251, 8, 36, 0.4) 30%, 
+      transparent 60%),
+    /* Base cyberpunk background - restore original colors */
+    linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+  background-size: 
+    100px 100%,
+    100% 100px,
+    150% 150%,
+    150% 150%,
+    150% 150%,
+    150% 150%,
+    100% 100%;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    center center;
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  /* Apply color shifting only to background */
+  animation: colorShift 15s infinite ease-in-out;
   clip-path: polygon(
     35px 0,
     calc(100% - 35px) 0,
@@ -160,116 +188,21 @@ ul::after {
 /* ========================================
    ELECTRIC GRID ANIMATION
    ======================================== */
-@keyframes electricGridFlow {
+@keyframes colorShift {
   0% {
-    background-image: 
-      repeating-linear-gradient(90deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 0, 128, 0.6) 49px, 
-        rgba(0, 255, 255, 0.8) 50px, 
-        rgba(255, 0, 128, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      repeating-linear-gradient(0deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 255, 0, 0.6) 49px, 
-        rgba(128, 0, 255, 0.8) 50px, 
-        rgba(255, 255, 0, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+    filter: hue-rotate(0deg) brightness(1);
   }
   25% {
-    background-image: 
-      repeating-linear-gradient(90deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(0, 255, 255, 0.6) 49px, 
-        rgba(255, 255, 0, 0.8) 50px, 
-        rgba(0, 255, 255, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      repeating-linear-gradient(0deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(128, 0, 255, 0.6) 49px, 
-        rgba(255, 0, 128, 0.8) 50px, 
-        rgba(128, 0, 255, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+    filter: hue-rotate(90deg) brightness(1.1);
   }
   50% {
-    background-image: 
-      repeating-linear-gradient(90deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 255, 0, 0.6) 49px, 
-        rgba(128, 0, 255, 0.8) 50px, 
-        rgba(255, 255, 0, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      repeating-linear-gradient(0deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 0, 128, 0.6) 49px, 
-        rgba(0, 255, 255, 0.8) 50px, 
-        rgba(255, 0, 128, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+    filter: hue-rotate(180deg) brightness(0.9);
   }
   75% {
-    background-image: 
-      repeating-linear-gradient(90deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(128, 0, 255, 0.6) 49px, 
-        rgba(255, 0, 128, 0.8) 50px, 
-        rgba(128, 0, 255, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      repeating-linear-gradient(0deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(0, 255, 255, 0.6) 49px, 
-        rgba(255, 255, 0, 0.8) 50px, 
-        rgba(0, 255, 255, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+    filter: hue-rotate(270deg) brightness(1.05);
   }
   100% {
-    background-image: 
-      repeating-linear-gradient(90deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 0, 128, 0.6) 49px, 
-        rgba(0, 255, 255, 0.8) 50px, 
-        rgba(255, 0, 128, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      repeating-linear-gradient(0deg, 
-        transparent 0px, 
-        transparent 48px, 
-        rgba(255, 255, 0, 0.6) 49px, 
-        rgba(128, 0, 255, 0.8) 50px, 
-        rgba(255, 255, 0, 0.6) 51px, 
-        transparent 52px, 
-        transparent 100px
-      ),
-      linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+    filter: hue-rotate(360deg) brightness(1);
   }
 }
 

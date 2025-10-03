@@ -1,0 +1,28 @@
+#root {
+  margin: 16px;
+  
+}
+  
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+  margin: 8px;
+  padding: 8px;
+  border: whitesnake 3px solid;
+  border-radius: 8px;
+
+}
+
+h1 {
+   
+  position: absolute;
+  left: 50%;
+  top: 50%; /* if you want vertical centering too */
+  transform: translate(-50%, -50%);
+}
+
+  

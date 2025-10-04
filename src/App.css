@@ -302,7 +302,7 @@ li::before {
   mask-composite: xor;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  z-index: 1;
+  z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
 }

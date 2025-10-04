@@ -368,9 +368,9 @@ li button {
   background-size: 300% 300%;
   color: #ffffff;
   border: 2px solid transparent;
-  padding: 1px 10px 10px 10px;
+  padding: 4px 10px 10px 10px;
   border-radius: 0;
-  font-size: 0.9em;
+  font-size: 0.79em;
   font-weight: 700;
   cursor: pointer;
   margin: 20px auto 0 auto;
@@ -379,9 +379,9 @@ li button {
   width: 100%;
   box-sizing: border-box;
   text-align: right;
-  padding-left: 20px;
+  padding-left: 10px;
   padding-top: 10px;
-  padding-right: 10px; /* Adjust as needed for spacing */
+  padding-right: 1px; /* Adjust as needed for spacing */
  
   font-family: 'Orbitron', 'Courier New', monospace;
   text-align: center;
@@ -393,7 +393,7 @@ li button {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   /* Primary hexagonal shape */
   /* Much shorter arrow for text space */
-  clip-path: polygon(33% 0%, 100% 0%, 73% 100%, 0% 100%);
+  clip-path: polygon(33% 5%, 98% 0%, 73% 100%, 0% 100%);
   transform: skew(-15deg);
   transition: clip-path 0.4s cubic-bezier(.22,1.61,.36,1), transform 0.4s cubic-bezier(.22,1.61,.36,1);
   position: relative;
@@ -452,7 +452,7 @@ li button:hover {
   color: #ffffff;
   transform: scale(1.1) skew(-20deg);
   /* Much shorter hover expansion */
-  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
   box-shadow: 
     0 0 30px rgba(139, 92, 246, 0.9),
     0 0 40px rgba(168, 85, 247, 0.7),

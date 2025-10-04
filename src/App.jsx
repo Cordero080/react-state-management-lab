@@ -22,26 +22,26 @@ const fighters = [
     name: 'Nova',
     role: 'Survivor',
     img: survivorImg,
-    price: 12,
-    strength: 6,
-    agility: 4,
+    price: 12000,
+    strength: 7,
+    agility: 5,
   },
   {
     id: 2,
     name: 'Raven',
     role: 'Scavenger',
     img: scavengerImg,
-    price: 10,
+    price: 10000,
     strength: 5,
-    agility: 5,
+    agility: 7,
   },
   {
     id: 3,
     name: 'Shinobi',
     role: 'Shadow',
     img: shadowImg,
-    price: 18,
-    strength: 7,
+    price: 18000,
+    strength: 8,
     agility: 8,
   },
   {
@@ -49,7 +49,7 @@ const fighters = [
     name: 'Sacagawa',
     role: 'Tracker',
     img: trackerImg,
-    price: 14,
+    price: 14000,
     strength: 7,
     agility: 6,
   },
@@ -58,7 +58,7 @@ const fighters = [
     name: 'Deadeye',
     role: 'Sharpshooter',
     img: sharpshooterImg,
-    price: 20,
+    price: 20000,
     strength: 6,
     agility: 8,
   },
@@ -67,7 +67,7 @@ const fighters = [
     name: 'Kusushi',
     role: 'Medic',
     img: medicImg,
-    price: 15,
+    price: 15000,
     strength: 5,
     agility: 7,
   },
@@ -76,7 +76,7 @@ const fighters = [
     name: 'Nikola',
     role: 'Engineer',
     img: engineerImg,
-    price: 16,
+    price: 16000,
     strength: 6,
     agility: 5,
   },
@@ -85,7 +85,7 @@ const fighters = [
     name: 'Max',
     role: 'Brawler',
     img: brawlerImg,
-    price: 11,
+    price: 11000,
     strength: 8,
     agility: 3,
   },
@@ -94,7 +94,7 @@ const fighters = [
     name: 'Süülayl',
     role: 'Infiltrator',
     img: infiltratorImg,
-    price: 17,
+    price: 17000,
     strength: 5,
     agility: 9,
   },
@@ -103,7 +103,7 @@ const fighters = [
     name: "Ra-Okhan ",
     role: 'Leader',
     img: leaderImg,
-    price: 22,
+    price: 22000,
     strength: 7,
     agility: 6,
   },
@@ -111,57 +111,82 @@ const fighters = [
 
 const App = () => {
   const [team, setTeam] = useState([]);
-  const [money, setMoney] = useState(100);
-  
-  // Name arrays for each role
-  const fighterNames = {
-    'Survivor': ['Nova', 'Phoenix', 'Sam', 'Riley', 'Jordan', 'Ash', 'Onyx', 'Vita', 'Nova'],
-    'Scavenger': ['Raven', 'Maya', 'Kai', 'Rio', 'Crow', 'Echo', 'Vetra', 'X', 'Cipher'],
-    'Shadow': ['Shinobi', 'Spectra', 'Nyx', 'Ghost', 'Whisper', 'Phantom', 'Shade', 'Veil', 'Vanta'],
-    'Tracker': ['Sacagawa', 'Boone', 'Aragorn', 'Hawkeye', 'Tala', 'Sequoyah', 'Sun Tzu', 'Itzcoatl', 'Falcon'],
-    'Sharpshooter': ['Deadeye', 'Kane', 'Tecumseh', 'Eagle', 'Bullseye', 'Onyx', 'Shyne', 'Odin', 'Hawkeye'],
-    'Medic': ['Doc', 'Grace', 'Mercy', 'Esperanza', 'Archangel', 'Sage', 'Vita', 'Yemayá', 'Oshun'],
-    'Engineer': ['Da Vinci', 'Tesla', 'Stark', 'Gear', 'Sage', 'Flux', 'Vega', 'Orion', 'Atlas'],
-    'Brawler': ['Max', 'Rocky', 'Bull', 'Titan', 'Rex', 'Adamantine', 'Blaze', 'Storm', 'Mars'],
-    'Infiltrator': ['Wraith', 'Jaguar Paw', 'Ghost', 'Snake', 'Viper', 'Echo', 'Mirage', 'Falcon', 'Jiao Sidao'],
-    'Leader': ['Khan', 'Alexander', 'Maximus', 'Musashi', 'Atlas', 'Omega', 'Apex', 'Zeus', 'Method']
-  };
-  
+  const [money, setMoney] = useState(1010101);
   const [zombieFighters, setZombieFighters] = useState(fighters)
 
 const handleAddFighter = (fighter) => {
-  // Get random name from the role's name array
-  const roleNames = fighterNames[fighter.role];
-  const randomName = roleNames[Math.floor(Math.random() * roleNames.length)];
-  
-  // Create new fighter with random name and unique ID
-  const newFighter = {
-    ...fighter,
-    id: Date.now(), // Unique ID based on timestamp
-    name: randomName
-  };
+  if(money < fighter.price) {
+    console.log("Out of your league");
+    return;
+  }
   
   //.1 Adding to the crew
-  setTeam([...team, newFighter]);
+  setTeam([...team, fighter]);
+
+  const updatedFighters = zombieFighters.filter(f => f.id !== fighter.id);
+  setZombieFighters(updatedFighters);
 
   //.2 Go 4 broke
   setMoney(money - fighter.price);
-
-  console.log('Adding fighter', newFighter);
 };
 
+const handleRemoveFighter = (fighter) => {
+  // Remove from crew
+  const updatedTeam = team.filter(f => f.id !== fighter.id);
+  setTeam(updatedTeam);
+// Add back to available fighters
+setZombieFighters([...zombieFighters, fighter]);
+
+// Refund $$$
+setMoney(money + fighter.price);
+
+}
+const totalStrength = team.reduce((sum, fighter) => sum + fighter.strength, 0);
+const totalAgility = team.reduce((sum, fighter) => sum + fighter.agility, 0);
 // Slider navigation functions
   return (
     <div className="container">
       <h1>Zombie Fighters</h1>
-      
+      <p style={{textAlign: 'center', fontSize: '1.5em', margin: '20px'}}>
+        Cash: {money.toLocaleString()} Fr.
+      </p>
+      {/* Team section - uses  existing ul/li styles */}
+      <h1 style={{ fontSize: '2em'}}>Your Crew</h1>
+      {team.length > 0 && (
+        <div style={{ textAlign: 'center', margin: '20px' }}>
+          <p style={{ fontSize: '1.3em' }}><strong>Total Strength:</strong>{totalStrength} | <strong>Total Agility:</strong> {totalAgility} </p>
+        </div>
+      )}
+
+      {team.length === 0 ? (
+
+        <p style={{textAlign: 'center', fontSize: '1.2em', margin:'40px' }}>
+          Pick some crew members!
+        </p>
+      ): (
+    
       <ul>
+        {team.map((fighter) => (
+        <li key= {fighter.id}>
+          <img src={fighter.img} alt={fighter.role}/>
+          <h3>{fighter.role}</h3>
+          <p><strong>Name:</strong> {fighter.name}</p>
+          <p><strong>Price:</strong> {fighter.price}</p>
+          <p><strong>Strength:</strong> {fighter.strength}</p>
+          <p><strong>Agility:</strong> {fighter.agility}</p>
+          <button onClick={() => handleRemoveFighter(fighter)}>Remove</button>
+        </li>
+        ))}
+        </ul>
+  )}
+        <h1 style={{ fontSize: '2em'}}>Available Fighters</h1>
+        <ul>
         {zombieFighters.map((fighter) => (
           <li key={fighter.id}>
             <img src={fighter.img} alt={fighter.role}/>
             <h3>{fighter.role}</h3>
-            <p><strong>Name:</strong> {fighter.name}</p>
-            <p><strong>Price:</strong> ${fighter.price}k</p>
+            <p><strong>Alias:</strong> {fighter.name}</p>
+            <p><strong>Price:</strong> ${fighter.price}.</p>
             <p><strong>Strength:</strong> {fighter.strength}</p>
             <p><strong>Agility:</strong> {fighter.agility}</p>
             <button onClick={() => handleAddFighter(fighter)}>Add to Team</button>

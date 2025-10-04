@@ -146,7 +146,7 @@ const totalAgility = team.reduce((sum, fighter) => sum + fighter.agility, 0);
 // Slider navigation functions
   return (
     <div className="container">
-      <h1>Zombie Fighters</h1>
+      <h1>Zombie Slayers</h1>
       <p style={{textAlign: 'center', fontSize: '1.5em', margin: '20px'}}>
         Cash: {money.toLocaleString()} Fr.
       </p>
@@ -179,7 +179,7 @@ const totalAgility = team.reduce((sum, fighter) => sum + fighter.agility, 0);
         ))}
         </ul>
   )}
-        <h1 style={{ fontSize: '2em'}}>Available Fighters</h1>
+        <h1 style={{ fontSize: '2em'}}>Available Candidates</h1>
         <ul>
         {zombieFighters.map((fighter) => (
           <li key={fighter.id}>

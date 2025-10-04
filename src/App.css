@@ -368,24 +368,34 @@ li button {
   background-size: 300% 300%;
   color: #ffffff;
   border: 2px solid transparent;
-  padding: 25px 100px 25px 15px;
+  padding: 1px 10px 10px 10px;
   border-radius: 0;
   font-size: 0.9em;
   font-weight: 700;
   cursor: pointer;
-  margin: 20px 0 0 60px;
+  margin: 20px auto 0 auto;
   transition: all 0.4s ease;
   text-transform: uppercase;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: right;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 10px; /* Adjust as needed for spacing */
  
   font-family: 'Orbitron', 'Courier New', monospace;
   text-align: center;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 
     0 0 15px rgba(245, 158, 11, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   /* Primary hexagonal shape */
   /* Much shorter arrow for text space */
-  clip-path: polygon(0% 25%, 50% 25%, 50% 0%, 75% 50%, 50% 100%, 50% 75%, 0% 75%);
+  clip-path: polygon(33% 0%, 100% 0%, 73% 100%, 0% 100%);
+  transform: skew(-15deg);
+  transition: clip-path 0.4s cubic-bezier(.22,1.61,.36,1), transform 0.4s cubic-bezier(.22,1.61,.36,1);
   position: relative;
   overflow: visible;
   /* Add multiple box-shadow layers for additional depth */
@@ -405,7 +415,7 @@ li button::after {
   bottom: -1px;
   background: linear-gradient(45deg, #64ffda, #22d3ee, #e3384c, #b29e08, #47b49b, #3292a1);
   background-size: 400% 400%;
-  clip-path: polygon(0% 25%, 50% 25%, 50% 0%, 75% 50%, 50% 100%, 50% 75%, 0% 75%);
+  clip-path: polygon(15% 0%, 31% 0%, 75% 40%, 0% 100%);
   z-index: -1;
   border-radius: 0;
   animation: innerBorderGradientFlow 2s ease-in-out infinite reverse;
@@ -440,9 +450,9 @@ li button:hover {
   background: linear-gradient(45deg, #f65c71, #eff755, #fcf084, #7981f9);
   background-size: 400% 400%;
   color: #ffffff;
-  transform: scale(1.05);
+  transform: scale(1.1) skew(-20deg);
   /* Much shorter hover expansion */
-  clip-path: polygon(0% 20%, 55% 20%, 55% 0%, 80% 50%, 55% 100%, 55% 80%, 0% 80%);
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
   box-shadow: 
     0 0 30px rgba(139, 92, 246, 0.9),
     0 0 40px rgba(168, 85, 247, 0.7),
@@ -537,7 +547,7 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 3s ease-in-out infinite, titleFloat 3s ease-in-out infinite;
+  animation: gradientShift 1s ease-in-out infinite, titleFloat 3s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -674,7 +684,7 @@ h1 {
   li button {
     padding: 15px 40px 15px 10px;
     font-size: 1.0em;
-    margin: 15px 0 0 30px;
+    margin: 20px auto 0 auto;
   }
   
   img:hover {
@@ -733,6 +743,7 @@ h1 {
   li button {
     padding: 12px 24px;
     font-size: 1.1em;
+    margin: 20px auto 0 auto;
   }
   
   img:hover {
@@ -790,7 +801,7 @@ h1 {
   li button {
     padding: 10px 20px;
     font-size: 0.9em;
-    margin: 15px 0 0 40px;
+    margin: 15px auto 0 auto;
   }
   
   h1 {

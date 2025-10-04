@@ -9,15 +9,16 @@
 
 body {
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #1745d2, #69024866, #05f020de, #c20404c4, #0567e8);
+  border: clamp(2px, 1vw, 12px) solid #d2171735;
+  
+  background: linear-gradient(135deg, #d2d217ca, #da055366, #05f020de, #c20404c4, #0567e8);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 #root {
   margin: 20px;
-  background: radial-gradient(ellipse at center, #040219, rgba(83, 70, 207, 0.588), #071c3f79, #1c2a42);
+  background: radial-gradient(ellipse at center, #040219, rgba(83, 70, 207, 0.588), #1d263779, #13408d);
   min-height: 100vh;
   color: #7dd3fc;
   font-family: 'Orbitron', 'Courier New', monospace;

@@ -64,7 +64,7 @@ const fighters = [
   },
   {
     id: 6,
-    name: 'Doc',
+    name: 'Kusushi',
     role: 'Medic',
     img: medicImg,
     price: 15,
@@ -73,7 +73,7 @@ const fighters = [
   },
   {
     id: 7,
-    name: 'Tesla',
+    name: 'Nikola',
     role: 'Engineer',
     img: engineerImg,
     price: 16,
@@ -91,7 +91,7 @@ const fighters = [
   },
   {
     id: 9,
-    name: 'Wraith',
+    name: 'Süülayl',
     role: 'Infiltrator',
     img: infiltratorImg,
     price: 17,
@@ -100,7 +100,7 @@ const fighters = [
   },
   {
     id: 10,
-    name: 'Khan',
+    name: "Ra-Okhan ",
     role: 'Leader',
     img: leaderImg,
     price: 22,

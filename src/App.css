@@ -35,18 +35,7 @@ ul {
   overflow: visible;
   /* Remove custom properties - using background-position instead */
   /* ========================================
-     ELECTRIC GRID BACKGROUND SYSTEM
-     ======================================== */
-  /* Responsive electric grid with moving spectral gradients */
-  
-  /* Background moved to ::before pseudo-element */
-  
-  /* ========================================
-     ELECTRIC GRID SIZING AND POSITIONING
-     ======================================== */
-  /* Background properties moved to ::before pseudo-element */
-  
-  /* ========================================
+   
      ELECTRIC GRID ANIMATIONS
      ======================================== */
   /* Remove animation from main container to protect card images */
@@ -80,26 +69,27 @@ ul::before {
   z-index: -1;
   /* Move all background properties here */
   background-image: 
-    /* Fixed vertical grid lines */
-    repeating-linear-gradient(90deg, 
-      transparent 0px, 
-      transparent 48px, 
-      rgba(0, 255, 255, 0.5) 49px, 
-      rgba(0, 255, 255, 0.8) 50px, 
-      rgba(0, 255, 255, 0.5) 51px, 
-      transparent 52px, 
-      transparent 100px
-    ),
-    /* Fixed horizontal grid lines */
-    repeating-linear-gradient(0deg, 
-      transparent 0px, 
-      transparent 48px, 
-      rgba(255, 0, 128, 0.5) 49px, 
-      rgba(255, 0, 128, 0.8) 50px, 
-      rgba(255, 0, 128, 0.5) 51px, 
-      transparent 52px, 
-      transparent 100px
-    ),
+    /* Multiple radial gradients for smooth color shifts */
+    radial-gradient(circle at 20% 20%, 
+      rgba(5, 194, 242, 0.6) 0%, 
+      rgba(251, 8, 36, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 80% 30%, 
+      rgba(251, 8, 36, 0.6) 0%, 
+      rgba(133, 17, 235, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 70% 80%, 
+      rgba(133, 17, 235, 0.6) 0%, 
+      rgba(5, 194, 242, 0.4) 30%, 
+      transparent 60%),
+    radial-gradient(circle at 30% 70%, 
+      rgba(5, 194, 242, 0.6) 0%, 
+      rgba(251, 8, 36, 0.4) 30%, 
+      transparent 60%),
+    /* Base cyberpunk background - restore original colors */
+    linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
+  /* Add overlay for animated grid lines */
+  background-image: 
     /* Multiple radial gradients for smooth color shifts */
     radial-gradient(circle at 20% 20%, 
       rgba(5, 194, 242, 0.6) 0%, 
@@ -120,24 +110,21 @@ ul::before {
     /* Base cyberpunk background - restore original colors */
     linear-gradient(135deg, rgba(5, 194, 242, 0.982), rgba(251, 8, 36, 0.944), rgba(133, 17, 235, 0.938));
   background-size: 
-    100px 100%,
-    100% 100px,
-    150% 150%,
-    150% 150%,
-    150% 150%,
-    150% 150%,
-    100% 100%;
+    150% 150%,         /* Radial 1 */
+    150% 150%,         /* Radial 2 */
+    150% 150%,         /* Radial 3 */
+    150% 150%,         /* Radial 4 */
+    100% 100%;         /* Base background */
   background-position: 
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    center center;
-  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  /* Apply color shifting only to background */
-  animation: colorShift 15s infinite ease-in-out;
+    0 0,               /* Radial 1 */
+    0 0,               /* Radial 2 */
+    0 0,               /* Radial 3 */
+    0 0,               /* Radial 4 */
+    center center;     /* Base background */
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  
+  /* Apply only color shifting to backgrounds */
+  animation: colorShift 5s infinite ease-in-out;
   clip-path: polygon(
     35px 0,
     calc(100% - 35px) 0,
@@ -152,7 +139,45 @@ ul::before {
   filter: blur(1px);
 }
 
+/* Separate grid layer with simple transform animation */
 ul::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: 
+    /* Animated gradient grid lines */
+    repeating-linear-gradient(190deg, 
+      transparent 0px, 
+      transparent 48px, 
+      rgba(3, 24, 67, 0.323) 90px, 
+      rgba(0, 38, 255, 0.601) 90px, 
+      rgba(133, 17, 235, 0.942) 90px, 
+      transparent 52px, 
+      transparent 10px
+    ),
+    repeating-linear-gradient(0deg, 
+      transparent 0px, 
+      transparent 48px, 
+      rgba(251, 8, 36, 0.313) -90px, 
+      rgba(107, 59, 251, 0.811) 90px, 
+      rgba(5, 194, 242, 0.6) 90px, 
+      transparent 52px, 
+      transparent 10px
+    );
+  background-size: 80px 100%, -80% 100px;
+  background-position: 0 0, 0 0;
+  background-repeat: repeat, repeat;
+  /* Grid animations removed */
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+/* Border animation element */
+.border-element {
   content: '';
   position: absolute;
   top: -2px;
@@ -206,6 +231,10 @@ ul::after {
   }
 }
 
+
+
+
+
 /* ========================================
    WIREFRAME LINES ANIMATION
    ======================================== */
@@ -229,7 +258,7 @@ ul::after {
 li {
   list-style: none;
   padding: 20px;
-  border: 2px solid #06b6d4;
+  border: 8px solid #06b6d4;
   border-radius: 15px;
   width: calc(33.33% - 20px);
   min-width: 320px;
@@ -280,17 +309,28 @@ li:hover {
 
 /* Fighter details styling */
 li h3 {
-  color: #64ffda;
+  text-shadow: 0 2px 8px rgba(13, 237, 9, 0.259), 0 1px 0 rgba(31, 223, 244, 0.505);
   font-size: 1.5em;
   margin: 15px 0 10px 0;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 
-    0 0 10px #64ffda,
-    0 0 20px #06b6d4,
-    0 0 30px #0891b2;
   font-family: 'Orbitron', 'Courier New', monospace;
+  /* Moving gradient for role names */
+  background: linear-gradient(70deg,
+    #00fff7,   /* Neon cyan */
+    #fff700,   /* Bright yellow */
+    #ff00ea,   /* Neon magenta */
+    #00ff2a,   /* Electric green */
+    #ff5e00,   /* Vivid orange */
+    #00b3ff,   /* Bright blue */
+    #ffffff    /* Pure white for extra pop */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: roleGradientFlow 6s ease-in-out infinite;
 }
 
 li p {
@@ -495,7 +535,7 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 1s ease-in-out infinite;
+  animation: gradientShift 1s ease-in-out infinite, titleFloat 5s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -506,6 +546,30 @@ h1 {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
+}
+
+@keyframes roleGradientFlow {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  25% { 
+    background-position: 100% 0%; 
+  }
+  50% { 
+    background-position: 100% 100%; 
+  }
+  75% { 
+    background-position: 0% 100%; 
+  }
+}
+
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

@@ -166,7 +166,7 @@ const totalAgility = crew.reduce((sum, slayer) => sum + slayer.agility, 0);
           background: 'rgba(10, 10, 30, 0.75)', borderRadius: '0 0 18px 18px',
           textAlign: 'center',
         }}>
-          <h1 style={{margin: 0, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1}}>Zombie Slayers</h1>
+          <h1 style={{margin: 0, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1}}>Z🧟‍♂️mbie Slayers</h1>
           <div style={{fontSize: 'clamp(1.1rem, 2.5vw, 2rem)', margin: '10px 0 0 0', lineHeight: 1.2}}>
             Cash: $ {money.toLocaleString()}
           </div>

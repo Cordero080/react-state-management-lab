@@ -1,3 +1,18 @@
+li:hover {
+  border-radius: 0;
+}
+.zoom-card video.zoom-card-img:hover {
+  transform: scale(1.8);
+  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
+}
+/* Make zoomed video animation behave like zoomed image */
+.zoom-card video.zoom-card-img {
+  position: relative;
+  z-index: 3000;
+  transform: scale(1.2);
+  box-shadow: 0 0 40px 10px #0ff8, 0 0 0 8px #0ff2a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 /* Add button styling */
 .card button {
   background: linear-gradient(45deg, #0891b2, #0e7490, #0abdf4, #601663);
@@ -5,7 +20,7 @@
   color: #ffffff;
   border: 2px solid transparent;
   padding: 4px 10px 10px 10px;
-  border-radius: 0;
+  border-radius: 14px;
   font-size: 0.79em;
   font-weight: 700;
   cursor: pointer;
@@ -120,15 +135,15 @@
 li {
   list-style: none;
   background: linear-gradient(145deg, #0f172a, #1e293b, #13324e);
-  border-radius: 14px;
+  border-radius: 0;
   box-shadow: 0 2px 24px #0ff2, 0 0 0 2px #fff2, 0 0 0 8px #0ff2a;
-  margin: 18px 0;
-  padding: 24px 18px 18px 18px;
+  margin: 2px 0;
+  padding: 10px 8px 8px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 260px;
-  max-width: 340px;
+  min-width: 230px;
+  max-width: 320px;
   position: relative;
   transition: box-shadow 0.3s, transform 0.3s;
 }
@@ -163,5 +178,5 @@ li h3 {
 li p {
   font-size: 0.95em;
   margin: 3px 0;
-  padding: 0;
+    border-radius: 0;
 }

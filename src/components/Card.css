@@ -146,8 +146,8 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 230px;
-  max-width: 330px;
+  min-width: 242px;
+  max-width: 346px;
   position: relative;
   transition: box-shadow 0.3s, transform 0.3s;
   row-gap: 10px; /* Increase vertical space between rows of card info */

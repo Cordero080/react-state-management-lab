@@ -1,17 +1,88 @@
-li:hover {
-  border-radius: 0;
-}
-.zoom-card video.zoom-card-img:hover {
-  transform: scale(1.8);
-  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
-}
-/* Make zoomed video animation behave like zoomed image */
-.zoom-card video.zoom-card-img {
+
+.zoom-card > video.zoom-card-img,
+.zoom-card > img.zoom-card-img {
+  align-self: center;
+  margin-top: -120px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 3000;
   transform: scale(1.2);
   box-shadow: 0 0 40px 10px #0ff8, 0 0 0 8px #0ff2a;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.zoom-card > video.zoom-card-img:hover,
+.zoom-card > img.zoom-card-img:hover {
+  transform: scale(1.9) translateY(18px);
+  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
+  transition: transform 0.8s cubic-bezier(.22,1.61,.36,1);
+  z-index: 2;
+}
+
+
+.zoom-card > video.zoom-card-img,
+.zoom-card > img.zoom-card-img {
+  align-self: center;
+  margin-top: -120px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 3000;
+  transform: scale(1.2);
+  box-shadow: 0 0 40px 10px #0ff8, 0 0 0 8px #0ff2a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.zoom-card > video.zoom-card-img:hover,
+.zoom-card > img.zoom-card-img:hover {
+  transform: scale(1.9) translateY(18px);
+  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
+  transition: transform 0.8s cubic-bezier(.22,1.61,.36,1);
+  z-index: 2;
+}
+
+.zoom-card > video.zoom-card-img,
+.zoom-card > img.zoom-card-img {
+  align-self: center;
+  margin-top: -120px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 3000;
+  transform: scale(1.2);
+  box-shadow: 0 0 40px 10px #0ff8, 0 0 0 8px #0ff2a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.zoom-card > video.zoom-card-img:hover,
+.zoom-card > img.zoom-card-img:hover {
+  transform: scale(1.9) translateY(18px);
+  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
+  transition: transform 0.8s cubic-bezier(.22,1.61,.36,1);
+  z-index: 2;
+}
+
+.zoom-card > video.zoom-card-img,
+.zoom-card > img.zoom-card-img {
+  align-self: center;
+  margin-top: -120px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 3000;
+  transform: scale(1.2);
+  box-shadow: 0 0 40px 10px #0ff8, 0 0 0 8px #0ff2a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.zoom-card > video.zoom-card-img:hover,
+.zoom-card > img.zoom-card-img:hover {
+  transform: scale(1.9) translateY(18px);
+  box-shadow: 0 0 60px 20px #0ff8, 0 0 0 12px #0ff2a;
+  transition: transform 0.8s cubic-bezier(.22,1.61,.36,1);
+  z-index: 2;
+}
+
+li:hover {
+  border-radius: 0;
 }
 /* Add button styling */
 .card button {
@@ -154,19 +225,26 @@ li {
 }
 
 .zoom-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 600px;
+  height: 600px;
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   z-index: 2001 !important;
   transform: translate(-50%, -50%) scale(1.5) !important;
-  max-width: 350px !important;
-  overflow: visible !important;
+  max-width: 310px !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+  padding: 0 18px 18px 18px;
+  transition: min-height 0.3s cubic-bezier(.22,1.61,.36,1), height 0.3s cubic-bezier(.22,1.61,.36,1);
+  justify-content: flex-end;
 }
 
-.zoom-card img {
-  position: relative;
-  z-index: 3000;
-}
+
+
 
 li span:hover {
   filter: brightness(1.7) drop-shadow(0 0 4px #fff8);
@@ -185,3 +263,33 @@ li p {
   margin: 3px 0;
     border-radius: 0;
 }
+
+.zoom-card > *:not(:first-child) {
+  margin-top: 18px;
+}
+
+
+.zoom-card button {
+  position: static;
+  margin-top: auto;
+  margin-bottom: 4px;
+  left: unset;
+  bottom: unset;
+  transform: skew(-15deg);
+  width: 90%;
+  font-size: 0.7em;
+  padding: 9px 8px 8px 8px;
+  margin-left: 12px;
+}
+
+.zoom-card > *:not(video.zoom-card-img):not(img.zoom-card-img) {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.zoom-card h3,
+.zoom-card p {
+  margin-top: 2px;
+  margin-bottom: px;
+}
+

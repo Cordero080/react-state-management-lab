@@ -1,0 +1,167 @@
+/* Add button styling */
+.card button {
+  background: linear-gradient(45deg, #0891b2, #0e7490, #0abdf4, #601663);
+  background-size: 300% 300%;
+  color: #ffffff;
+  border: 2px solid transparent;
+  padding: 4px 10px 10px 10px;
+  border-radius: 0;
+  font-size: 0.79em;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 30px 0 0 20px;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  width: 79%;
+  box-sizing: border-box;
+  text-align: right;
+  padding-left: 10px;
+  padding-top: 12px;
+  padding-right: 1px; /* Adjust as needed for spacing */
+ 
+  font-family: 'Orbitron', 'Courier New', monospace;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 15px rgba(245, 158, 11, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  /* Primary hexagonal shape */
+  /* Much shorter arrow for text space */
+  clip-path: polygon(33% 5%, 98% 0%, 73% 100%, 0% 100%);
+  transform: skew(-15deg);
+  transition: clip-path 0.4s cubic-bezier(.22,1.61,.36,1), transform 0.4s cubic-bezier(.22,1.61,.36,1);
+  position: relative;
+  overflow: visible;
+  /* Add multiple box-shadow layers for additional depth */
+  
+}
+
+/* Border layer using ::before */
+
+/* Inner border layer using ::after */
+.card button::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, #64ffda, #22d3ee, #e3384c, #b29e08, #47b49b, #3292a1);
+  background-size: 400% 400%;
+  clip-path: polygon(15% 0%, 31% 0%, 75% 40%, 0% 100%);
+  z-index: -1;
+  border-radius: 0;
+  animation: innerBorderGradientFlow 4s ease-in-out infinite reverse;
+  transition: all 1.3s ease;
+}
+
+@keyframes buttonGradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderGradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes buttonBorderFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.card button:hover {
+  background: linear-gradient(45deg, #f65c71, #eff755, #fcf084, #7981f9);
+  background-size: 400% 400%;
+  color: #ffffff;
+  transform: scale(1.1) skew(-20deg);
+  /* Much shorter hover expansion */
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
+  box-shadow: 
+    0 0 30px rgba(139, 92, 246, 0.9),
+    0 0 40px rgba(168, 85, 247, 0.7),
+    0 0 50px rgba(192, 132, 252, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: buttonGradientFlow 1.5s ease-in-out infinite;
+}
+
+/* Removed outer border hover effects */
+
+/* Removed hover after effects */
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 30px rgba(139, 92, 246, 0.9),
+      0 0 40px rgba(168, 85, 247, 0.7),
+      0 0 50px rgba(192, 132, 252, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(139, 92, 246, 1),
+      0 0 50px rgba(168, 85, 247, 0.9),
+      0 0 60px rgba(192, 132, 252, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+/* Card Styles */
+li {
+  list-style: none;
+  background: linear-gradient(145deg, #0f172a, #1e293b, #13324e);
+  border-radius: 14px;
+  box-shadow: 0 2px 24px #0ff2, 0 0 0 2px #fff2, 0 0 0 8px #0ff2a;
+  margin: 18px 0;
+  padding: 24px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 260px;
+  max-width: 340px;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.zoom-card {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 2001 !important;
+  transform: translate(-50%, -50%) scale(1.5) !important;
+  max-width: 350px !important;
+  overflow: visible !important;
+}
+
+.zoom-card img {
+  position: relative;
+  z-index: 3000;
+}
+
+li span:hover {
+  filter: brightness(1.7) drop-shadow(0 0 4px #fff8);
+  color: #fffbe6 !important;
+  transition: filter 0.2s, color 0.2s;
+}
+
+li h3 {
+  font-size: 1.1em;
+  margin: 6px 0 4px 0;
+  padding: 0;
+}
+
+li p {
+  font-size: 0.95em;
+  margin: 3px 0;
+  padding: 0;
+}

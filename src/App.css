@@ -1,3 +1,50 @@
+/* Header Styles */
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 10px solid #dee90eb6;
+  background: rgba(10, 10, 30, 0.75);
+  border-radius: 0 0 18px 18px;
+  text-align: center;
+}
+
+.main-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.header-cash {
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
+  margin: 10px 0 0 0;
+  line-height: 1.2;
+}
+
+.header-message {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin: 10px 0 0 0;
+  color: #f83232ff;
+  text-shadow: 0 0 10px #e80404f7;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.section-title {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(1.3rem, 4vw, 2.5rem);
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+}
+li span:hover {
+  filter: brightness(1.7) drop-shadow(0 0 4px rgba(248, 202, 110, 0.558));
+  color: #f5d32b !important;
+  transition: filter 0.2s, color 0.2s;
+}
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 @font-face {
@@ -17,9 +64,9 @@ body {
 }
 
 #root {
-  margin: 20px;
+  margin: 4px;
   background: radial-gradient(ellipse at center, #040219, rgba(83, 70, 207, 0.588), #1d263779, #13408d);
-  min-height: 100vh;
+  min-height: 50vh;
   color: #7dd3fc;
   font-family: 'Orbitron', 'Courier New', monospace;
 }
@@ -30,8 +77,8 @@ ul {
   gap: 25px;
   justify-content: space-evenly;
   align-content: flex-start;
-  padding: 40px;
-  margin: 40px auto;
+  padding: 4px;
+  margin: 4px auto;
   max-width: 3000px;
   overflow: visible;
   /* Remove custom properties - using background-position instead */
@@ -299,7 +346,7 @@ li::before {
   mask-composite: xor;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  z-index: -1;
+  z-index: -2;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -363,125 +410,6 @@ li p:first-of-type {
     0 0 18px #ea580c;
 }
 
-/* Add button styling */
-li button {
-  background: linear-gradient(45deg, #0891b2, #0e7490, #0abdf4, #601663);
-  background-size: 300% 300%;
-  color: #ffffff;
-  border: 2px solid transparent;
-  padding: 4px 10px 10px 10px;
-  border-radius: 0;
-  font-size: 0.79em;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 20px auto 0 auto;
-  transition: all 0.4s ease;
-  text-transform: uppercase;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: right;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 1px; /* Adjust as needed for spacing */
- 
-  font-family: 'Orbitron', 'Courier New', monospace;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 0 15px rgba(245, 158, 11, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Primary hexagonal shape */
-  /* Much shorter arrow for text space */
-  clip-path: polygon(33% 5%, 98% 0%, 73% 100%, 0% 100%);
-  transform: skew(-15deg);
-  transition: clip-path 0.4s cubic-bezier(.22,1.61,.36,1), transform 0.4s cubic-bezier(.22,1.61,.36,1);
-  position: relative;
-  overflow: visible;
-  /* Add multiple box-shadow layers for additional depth */
-  
-}
-
-
-/* Border layer using ::before */
-
-/* Inner border layer using ::after */
-li button::after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(45deg, #64ffda, #22d3ee, #e3384c, #b29e08, #47b49b, #3292a1);
-  background-size: 400% 400%;
-  clip-path: polygon(15% 0%, 31% 0%, 75% 40%, 0% 100%);
-  z-index: -1;
-  border-radius: 0;
-  animation: innerBorderGradientFlow 2s ease-in-out infinite reverse;
-  transition: all 1.3s ease;
-}
-
-@keyframes buttonGradientFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes borderGradientFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes buttonBorderFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-li button:hover {
-  background: linear-gradient(45deg, #f65c71, #eff755, #fcf084, #7981f9);
-  background-size: 400% 400%;
-  color: #ffffff;
-  transform: scale(1.1) skew(-20deg);
-  /* Much shorter hover expansion */
-  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
-  box-shadow: 
-    0 0 30px rgba(139, 92, 246, 0.9),
-    0 0 40px rgba(168, 85, 247, 0.7),
-    0 0 50px rgba(192, 132, 252, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  animation: buttonGradientFlow 1.5s ease-in-out infinite;
-}
-
-/* Removed outer border hover effects */
-
-/* Removed hover after effects */
-
-@keyframes buttonPulse {
-  0%, 100% {
-    box-shadow: 
-      0 0 30px rgba(139, 92, 246, 0.9),
-      0 0 40px rgba(168, 85, 247, 0.7),
-      0 0 50px rgba(192, 132, 252, 0.5),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  }
-  50% {
-    box-shadow: 
-      0 0 40px rgba(139, 92, 246, 1),
-      0 0 50px rgba(168, 85, 247, 0.9),
-      0 0 60px rgba(192, 132, 252, 0.7),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-}
 
 img {
   width: 240px;
@@ -495,7 +423,7 @@ img {
   box-shadow: 
     0 0 15px rgba(99, 6, 212, 0.887),
     inset 0 0 20px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s ease-out;
+  transition: all 1s ease-out;
   background: radial-gradient(circle, #0a0a0a, #1a1a2e);
 }
 
@@ -505,9 +433,9 @@ img:hover {
   z-index: 1000;
   position: relative;
   box-shadow: 
-    0 0 20px rgba(19, 1, 13, 0.8),
-    0 0 60px rgba(100, 255, 218, 0.5),
-    0 0 55px rgba(99, 102, 241, 0.2),
+    0 0 20px rgba(19, 1, 13, 0),
+    0 0 20px rgba(39, 1, 1, 0.985),
+    0 0 55px rgba(241, 229, 99, 0),
     inset 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
@@ -518,7 +446,7 @@ li:has(img:hover) {
 
 li:hover::before {
   opacity: 1;
-  animation: borderAnimationFast 1s ease-in-out infinite;
+  animation: borderAnimationFast 3s ease-in-out infinite;
 }
 
 @keyframes borderAnimationFast {
@@ -532,7 +460,7 @@ li:hover::before {
 
 h1 {
   margin: 0 auto 30px auto;
-  padding-top: 40px;
+  padding-top: 30px;
   width: fit-content;
   font-size: clamp(2.5rem, 6vw, 4em);
   text-align: center;
@@ -578,13 +506,37 @@ h1 {
 
 @keyframes titleFloat {
   0%, 100% {
-    transform: translateY(10px);
+    transform: translateY(-10px);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(1px);
   }
 }
 
+
+.card-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.454);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+/* Card Zoom Feature */
+.zoom-card {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 2001 !important;
+  transform: translate(-50%, -50%) scale(1.5) !important;
+  transition: transform 0.4s cubic-bezier(.22,1.61,.36,1), box-shadow 0.3s;
+  max-width: 400px !important;
+  clip-path: none !important;
+  overflow: visible !important;
+}
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Large screens (desktops) - 3 columns */

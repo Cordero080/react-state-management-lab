@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import './Card.css';
-import shadowAnimation from '../assets/shadow-animation.mp4';
-import sharpshooterAnimation from '../assets/sharpshooter.mp4';
-import brawlerAnimation from '../assets/brawler.mp4';
-import scavengerAnimation from '../assets/scavenger.mp4';
-import trackerAnimation from '../assets/tracker.mp4';
-import engineerAnimation from '../assets/engineer.mp4';
-import infiltratorAnimation from '../assets/infiltrator.mp4';
-import leaderAnimation from '../assets/leader.mp4';
-import medicAnimation from '../assets/medic.mp4';
+import shadowAnimation from '../../assets/videos/shadow-animation.mp4';
+import sharpshooterAnimation from '../../assets/videos/sharpshooter.mp4';
+import brawlerAnimation from '../../assets/videos/brawler.mp4';
+import scavengerAnimation from '../../assets/videos/scavenger.mp4';
+import trackerAnimation from '../../assets/videos/tracker.mp4';
+import engineerAnimation from '../../assets/videos/engineer.mp4';
+import infiltratorAnimation from '../../assets/videos/infiltrator.mp4';
+import leaderAnimation from '../../assets/videos/leader.mp4';
+import medicAnimation from '../../assets/videos/medic.mp4';
 
 const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
   const sharpshooterRef = useRef(null);

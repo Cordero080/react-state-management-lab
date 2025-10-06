@@ -65,9 +65,10 @@ body {
 }
 
 #root {
-  margin: 4px;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
   background: radial-gradient(ellipse at center, #040219, rgba(83, 70, 207, 0.588), #1d263779, #13408d);
-  min-height: 50vh;
   color: #7dd3fc;
   font-family: 'Orbitron', 'Courier New', monospace;
 }

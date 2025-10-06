@@ -1,0 +1,10 @@
+.candidates-list-section {
+  margin: 0 0 4px 0;   /* less bottom margin */
+  padding: 0;
+}
+
+.candidates-list-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 4px;   /* less space below title */
+}

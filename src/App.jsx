@@ -1,20 +1,25 @@
 import React from 'react';
 import './App.css';
 import './Header.css';
-import Card from './components/Card';
+import Card from './components/Card/Card';
+import CrewList from './components/CrewList/CrewList';
+import CandidatesList from './components/CandidatesList/CandidatesList';
+import ZoomCardModal from './components/ZoomCardModal/ZoomCardModal';
+import Header from './components/Header/Header';
 import { useState } from 'react';
+import { handleAddSlayer, handleRemoveSlayer, getTotalStrength, getTotalAgility } from './appHandlers';
 
 // Import images
-import survivorImg from './assets/survivor2.png';
-import scavengerImg from './assets/scavenger.png';
-import shadowImg from './assets/shadow.png';
-import trackerImg from './assets/tracker.png';
-import sharpshooterImg from './assets/sharpshooter.png';
-import brawlerImg from './assets/brawler.png';
-import infiltratorImg from './assets/infiltrator.png';
-import medicImg from './assets/medic.png';
-import leaderImg from './assets/leader.png';
-import engineerImg from './assets/engineer.png';
+import survivorImg from './assets/images/survivor2.png';
+import scavengerImg from './assets/images/scavenger.png';
+import shadowImg from './assets/images/shadow.png';
+import trackerImg from './assets/images/tracker.png';
+import sharpshooterImg from './assets/images/sharpshooter.png';
+import brawlerImg from './assets/images/brawler.png';
+import infiltratorImg from './assets/images/infiltrator.png';
+import medicImg from './assets/images/medic.png';
+import leaderImg from './assets/images/leader.png';
+import engineerImg from './assets/images/engineer.png';
 
 // Fighter data with fixedaliass
 const slayers = [
@@ -120,38 +125,34 @@ const App = () => {
   const [zoomCard, setZoomCard] = useState(null);
   
 
-const handleAddSlayer = (slayer) => {
-  if(money < slayer.price) {
-    setMessage(`Out of your league! You need $${slayer.price.toLocaleString()} but only have $${money.toLocaleString()}`);
-    return;
-  }
-  setCrew([...crew, slayer]);
-  setZombieSlayers(zombieSlayers.filter(s => s.id !== slayer.id));
-  setMoney(money - slayer.price);
-  setPopup(`${slayer.alias} added`);
-  setPopupType('add');
-  setTimeout(() => { setPopup(''); setPopupType(''); }, 1500); 
-};
+const onAddSlayer = (slayer) =>
+  handleAddSlayer({
+    slayer,
+    money,
+    setMessage,
+    setCrew,
+    crew,
+    setZombieSlayers,
+    zombieSlayers,
+    setMoney,
+    setPopup,
+    setPopupType,
+  });
 
-const handleRemoveSlayer = (slayer) => {
-  setCrew(crew.filter(s => s.id !== slayer.id));
-  setZombieSlayers([...zombieSlayers, slayer]);
-  setMoney(money + slayer.price);
- setPopup(`${slayer.alias} removed`);
-setPopupType('remove');
-setTimeout(() => { setPopup(''); setPopupType(''); }, 1500);
-};
-// reduce() == REDUCING a COLLECTION (ARRAY) DOWN to a SINGLE VALUE (many numbers become one, hece: "reducing")
-//"Reduce" = Take many items and condense them into one result
-// sum = 0 = (method provides starting value, 0)
-// ie; slayer = { alias: 'Nova', agility: 5 }
-// Returns: 0 + 5(slayer.strength) = 5 -----------------------------+
-// sum = 5 (result from round 1)
-// slayer = { alias: 'Raven', agility: 7 }
-// Returns: 5 + 7 = 12   (Nova + Raven)...etc.
+const onRemoveSlayer = (slayer) =>
+  handleRemoveSlayer({
+    slayer,
+    setCrew,
+    crew,
+    setZombieSlayers,
+    zombieSlayers,
+    setMoney,
+    setPopup,
+    setPopupType,
+  });
 
-const totalStrength = crew.reduce((sum, slayer) => sum + slayer.strength, 0);
-const totalAgility = crew.reduce((sum, slayer) => sum + slayer.agility, 0);
+const totalStrength = getTotalStrength(crew);
+const totalAgility = getTotalAgility(crew);
 // Slider navigation functions
   return (
     <>
@@ -160,118 +161,37 @@ const totalAgility = crew.reduce((sum, slayer) => sum + slayer.agility, 0);
           <div className={`popup-message${popupType ? ' ' + popupType : ''}`}>{popup}</div>
         )}
         {/* Header Section */}
-        <header style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-          padding: '18px 0 10px 0', marginBottom: 10, borderBottom: '10px solid #dee90eb6',
-          background: 'rgba(10, 10, 30, 0.75)', borderRadius: '0 0 18px 18px',
-          textAlign: 'center',
-        }}>
-          <h1 style={{margin: 0, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1}}>Z🧟‍♂️mbie Slayers</h1>
-          <div style={{fontSize: 'clamp(1.1rem, 2.5vw, 2rem)', margin: '10px 0 0 0', lineHeight: 1.2}}>
-            Cash: $ {money.toLocaleString()}
-          </div>
-          {message && (
-            <div style={{
-              fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-              margin: '10px 0 0 0',
-              color: '#f83232ff',
-              textShadow: '0 0 10px #e80404f7',
-              fontWeight: 'bold',
-              lineHeight: 1.2
-            }}>
-              ⚠️ {message} ⚠️
-            </div>
-          )}
-        </header>
+        <Header money={money} message={message} />
 
         {/* Crew Section */}
-        <section style={{margin: '30px 0 0 0', padding: '0 0 10px 0'}}>
-          <h1 className="section-title">Your Crew</h1>
-          {crew.length > 0 && (
-            <div style={{ textAlign: 'center', margin: '10px 0 8px 0' }}>
-              <p style={{ fontSize: '1.1em', margin: 0 }}>
-                <strong>Total Strength:</strong> {totalStrength} | <strong>Total Agility:</strong> {totalAgility}
-              </p>
-            </div>
-          )}
-          {crew.length === 0 ? (
-            <p style={{textAlign: 'center', fontSize: '1.5em', margin:'20px 0 0 0' }}>
-              Pick some crew members!
-            </p>
-          ) : (
-            <ul>
-              {crew.map((slayer) => (
-                zoomCard === slayer.id ? null : (
-                  <Card
-                    key={slayer.id}
-                    slayer={slayer}
-                    isCrew={true}
-                    isZoomed={false}
-                    onAliasClick={(e) => {
-                      e.stopPropagation();
-                      setZoomCard(zoomCard === slayer.id ? null : slayer.id);
-                    }}
-                    onButtonClick={() => handleRemoveSlayer(slayer)}
-                  />
-                )
-              ))}
-            </ul>
-          )}
-        </section>
+        <CrewList
+          crew={crew}
+          zoomCard={zoomCard}
+          setZoomCard={setZoomCard}
+          handleRemoveSlayer={onRemoveSlayer}
+          totalStrength={totalStrength}
+          totalAgility={totalAgility}
+        />
 
         {/* Divider */}
         <hr style={{border: 'none', borderTop: '2px solid #0ea5e9', margin: '30px 0 20px 0', opacity: 0.5}} />
 
         {/* Candidates Section */}
-        <section style={{margin: '0 0 10px 0'}}>
-          
-          <h1 className="section-title">Available Candidates</h1>
-          <ul>
-            {zombieSlayers.map((slayer) => (
-              zoomCard === slayer.id ? null : (
-                <Card
-                  key={slayer.id}
-                  slayer={slayer}
-                  isCrew={false}
-                  isZoomed={false}
-                  onAliasClick={(e) => {
-                    e.stopPropagation();
-                    setZoomCard(zoomCard === slayer.id ? null : slayer.id);
-                  }}
-                  onButtonClick={() => handleAddSlayer(slayer)}
-                />
-              )
-            ))}
-          </ul>
-        </section>
+        <CandidatesList
+          zombieSlayers={zombieSlayers}
+          zoomCard={zoomCard}
+          setZoomCard={setZoomCard}
+          handleAddSlayer={onAddSlayer}
+        />
       </div>
-      {zoomCard && (
-        <>
-          <div
-            className='card-backdrop'
-            onClick={() => setZoomCard(null)}
-          />
-          {(() => {
-            // Find the zoomed card in crew or zombieSlayers
-            const all = [...crew, ...zombieSlayers];
-            const slayer = all.find(s => s.id === zoomCard);
-            if (!slayer) return null;
-            const isCrew = crew.some(s => s.id === zoomCard);
-            return (
-              <Card
-                slayer={slayer}
-                isCrew={isCrew}
-                isZoomed={true}
-                onAliasClick={(e) => {
-                  e.stopPropagation();
-                  setZoomCard(null);
-                }}
-                onButtonClick={() => isCrew ? handleRemoveSlayer(slayer) : handleAddSlayer(slayer)}
-              />
-            );
-          })()}
-        </>
-      )}
+      <ZoomCardModal
+        zoomCard={zoomCard}
+        crew={crew}
+        zombieSlayers={zombieSlayers}
+        setZoomCard={setZoomCard}
+  handleAddSlayer={onAddSlayer}
+  handleRemoveSlayer={onRemoveSlayer}
+      />
     </>
   );
 }

@@ -71,7 +71,7 @@ _Budget validation preventing unauthorized purchases_
 - **React 18** - Frontend framework
 - **Vite** - Build tool and dev server
 - **CSS3** - Custom styling with animations and clip-paths
-- **JavaScript ES6+** - Modern syntax with arrow functions, spread operators, destructuring
+- **JavaScript ES6+** - Modern syntax with arrow functions, spread operators, destructuring.
 
 ## 📦 Installation
 

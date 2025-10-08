@@ -1,6 +1,8 @@
 import React from 'react';
+
 import './App.css';
 import './Header.css';
+import BgMusic from "./components/BgMusic";
 import Card from './components/Card/Card';
 import CrewList from './components/CrewList/CrewList';
 import CandidatesList from './components/CandidatesList/CandidatesList';
@@ -115,6 +117,9 @@ const slayers = [
   },
 ];
 
+
+  
+    
 const App = () => {
   const [crew, setCrew] = useState([]);
   const [money, setMoney] = useState(2357113);
@@ -156,6 +161,9 @@ const totalAgility = getTotalAgility(crew);
 // Slider navigation functions
   return (
     <>
+    
+      <BgMusic />
+
       <div className="container">
         {popup && (
           <div className={`popup-message${popupType ? ' ' + popupType : ''}`}>{popup}</div>

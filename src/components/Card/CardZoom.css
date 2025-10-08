@@ -1,0 +1,8 @@
+.zoom-card-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+/* You can add more zoom-specific styles here if needed */

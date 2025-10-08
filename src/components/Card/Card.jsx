@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import './Card.css';
+import './CardZoom.css';
 import shadowAnimation from '../../assets/videos/shadow-animation.mp4';
 import sharpshooterAnimation from '../../assets/videos/sharpshooter.mp4';
 import brawlerAnimation from '../../assets/videos/brawler.mp4';
@@ -43,7 +44,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
           muted
           playsInline
           className="zoom-card-img"
-          style={{ width: '160px', height: '160px', objectFit: 'cover', marginBottom: '12px' }}
+          /* style moved to CardZoom.css */
         />
       ) : isZoomed && slayer.role === 'Sharpshooter' ? (
         <video
@@ -54,7 +55,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
           muted
           playsInline
           className="zoom-card-img"
-          style={{ width: '160px', height: '160px', objectFit: 'cover', marginBottom: '12px' }}
+          /* style moved to CardZoom.css */
         />
 
       ) :  isZoomed && slayer.role === 'Brawler' ? (
@@ -67,7 +68,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
         muted
         playsInline
         className='zoom-card-img'
-        style={{width: '160px', height: '160px', objectFit: 'cover', marginBottom: '12px'}}
+  /* style moved to CardZoom.css */
         />
 
       ) : isZoomed && slayer.role === 'Scavenger' ? (
@@ -79,8 +80,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
         muted
         playsInline
         className='zoom-card-img'
-        style ={{ width: '160px', height: '160px', objectFit:'cover',
-          marginBottom:'12px'}}
+        /* style moved to CardZoom.css */
         />
 
       ) : isZoomed && slayer.role === 'Tracker' ? (
@@ -91,8 +91,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
         loop
         muted
         playsInline
-        className='zoom-card-img' style ={{ width: '160px', height: '160px', objectFit:'cover',
-          marginBottom:'12px'}}
+        className='zoom-card-img'
           />
       ) : isZoomed && slayer.role === 'Engineer' ? (
         <video
@@ -103,7 +102,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
         muted
         playsInline
         className='zoom-card-img'
-        style={{ width: '160px', height: '160px', objectFit: 'cover' }}
+  /* style moved to CardZoom.css */
         />
       ) : isZoomed && slayer.role === 'Infiltrator' ? (
         <video
@@ -114,7 +113,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
         muted
         playsInline
         className='zoom-card-img'
-        style={{ width: '160px', height: '160px', objectFit: 'cover' }}
+  /* style moved to CardZoom.css */
         />
       ) : isZoomed && slayer.role === 'Leader' ? (
         <video
@@ -126,7 +125,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
           muted
           playsInline
           className="zoom-card-img"
-          style={{ width: '160px', height: '160px', objectFit: 'cover', marginBottom: '12px' }}
+          /* style moved to CardZoom.css */
         />
       ) : isZoomed && slayer.role === 'Medic' ? (
         <video
@@ -137,7 +136,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
           muted
           playsInline
           className="zoom-card-img"
-          style={{ width: '160px', height: '160px', objectFit: 'cover', marginBottom: '12px' }}
+          /* style moved to CardZoom.css */
         />
       ) : (
         <img src={slayer.img} alt={slayer.role} />

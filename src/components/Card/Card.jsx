@@ -21,6 +21,18 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
   const medicRef = useRef(null);
   const leaderRef = useRef(null);
 
+  const videoMap = {
+    Shadow: { src: shadowAnimation },
+    Sharpshooter: { src: sharpshooterAnimation, ref: sharpshooterRef },
+    Brawler: { src: brawlerAnimation, ref: brawlerRef },
+    Scavenger: { src: scavengerAnimation, ref: scavengerRef },
+    Tracker: { src: trackerAnimation, ref: trackerRef },
+    Engineer: { src: engineerAnimation, ref: engineerRef },
+    Infiltrator: { src: infiltratorAnimation, ref: infiltratorRef },
+    Leader: { src: leaderAnimation, ref: leaderRef },
+    Medic: { src: medicAnimation, ref: medicRef },
+  };
+
   useEffect(() => {
     if (isZoomed && slayer.role === 'Sharpshooter' && sharpshooterRef.current) {
       const video = sharpshooterRef.current;
@@ -34,113 +46,27 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
     }
   }, [isZoomed, slayer.role]);
 
+  const renderVideo = () => {
+    const videoData = videoMap[slayer.role];
+    if (videoData) {
+      return (
+        <video
+          ref={videoData.ref}
+          src={videoData.src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="zoom-card-img"
+        />
+      );
+    }
+    return <img src={slayer.img} alt={slayer.role} />;
+  };
+
   return (
     <li className={`card${isZoomed ? ' zoom-card' : ''}`}>
-      {isZoomed && slayer.role === 'Shadow' ? (
-        <video
-          src={shadowAnimation}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="zoom-card-img"
-          /* style moved to CardZoom.css */
-        />
-      ) : isZoomed && slayer.role === 'Sharpshooter' ? (
-        <video
-          ref={sharpshooterRef}
-          src={sharpshooterAnimation}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="zoom-card-img"
-          /* style moved to CardZoom.css */
-        />
-
-      ) :  isZoomed && slayer.role === 'Brawler' ? (
-
-        <video
-        ref={brawlerRef}
-        src={brawlerAnimation}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='zoom-card-img'
-  /* style moved to CardZoom.css */
-        />
-
-      ) : isZoomed && slayer.role === 'Scavenger' ? (
-        <video
-        ref={scavengerRef}
-        src={scavengerAnimation}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='zoom-card-img'
-        /* style moved to CardZoom.css */
-        />
-
-      ) : isZoomed && slayer.role === 'Tracker' ? (
-        <video
-        ref={trackerRef}
-        src={trackerAnimation}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='zoom-card-img'
-          />
-      ) : isZoomed && slayer.role === 'Engineer' ? (
-        <video
-        ref={engineerRef}
-        src={engineerAnimation}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='zoom-card-img'
-  /* style moved to CardZoom.css */
-        />
-      ) : isZoomed && slayer.role === 'Infiltrator' ? (
-        <video
-        ref={infiltratorRef}
-        src={infiltratorAnimation}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='zoom-card-img'
-  /* style moved to CardZoom.css */
-        />
-      ) : isZoomed && slayer.role === 'Leader' ? (
-        <video
-          ref={leaderRef}
-          src={leaderAnimation}
-          autoPlay
-          loop
-          alt="Leader"
-          muted
-          playsInline
-          className="zoom-card-img"
-          /* style moved to CardZoom.css */
-        />
-      ) : isZoomed && slayer.role === 'Medic' ? (
-        <video
-          ref={medicRef}
-          src={medicAnimation}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="zoom-card-img"
-          /* style moved to CardZoom.css */
-        />
-      ) : (
-        <img src={slayer.img} alt={slayer.role} />
-      )}
+      {isZoomed ? renderVideo() : <img src={slayer.img} alt={slayer.role} />}
       <h3>{slayer.role}</h3>
       <p>
         <strong>{isCrew ? 'Name' : 'Alias'}:</strong>{' '}

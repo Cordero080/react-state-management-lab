@@ -7,49 +7,38 @@ const BgMusic = () => {
   let playbackStarted = false;
 
   const fadeIn = (audioElement) => {
-    let volume = 0;
-    audioElement.volume = volume;
+    audioElement.volume = 0;
     const interval = setInterval(() => {
-      volume = Math.min(volume + 0.1, 1);
-      audioElement.volume = volume;
-      if (volume === 1) clearInterval(interval);
+      audioElement.volume = Math.min(audioElement.volume + 0.1, 1);
+      if (audioElement.volume === 1) clearInterval(interval);
     }, 200);
   };
 
-  const handleTrackEnd = (currentTrack, nextTrack) => {
-    nextTrack.play().catch((error) => console.error('Error playing track:', error));
-    fadeIn(nextTrack);
-  };
-
   useEffect(() => {
+    const playTrack = (trackRef, nextTrackRef) => {
+      trackRef.current?.play().then(() => fadeIn(trackRef.current)).catch(console.error);
+      trackRef.current?.addEventListener('ended', () => playTrack(nextTrackRef, trackRef));
+    };
+
     const handleScreenClick = () => {
-      if (!playbackStarted && track1Ref.current) {
+      if (!playbackStarted) {
         playbackStarted = true;
-        track1Ref.current.play().catch((error) => console.error('Error playing Track 1:', error));
+        playTrack(track1Ref, track2Ref);
       }
     };
 
     document.addEventListener('click', handleScreenClick);
 
-    if (track1Ref.current && track2Ref.current) {
-      track1Ref.current.addEventListener('ended', () => handleTrackEnd(track1Ref.current, track2Ref.current));
-      track2Ref.current.addEventListener('ended', () => handleTrackEnd(track2Ref.current, track1Ref.current));
-    }
-
     return () => {
       document.removeEventListener('click', handleScreenClick);
-
-      if (track1Ref.current && track2Ref.current) {
-        track1Ref.current.removeEventListener('ended', () => handleTrackEnd(track1Ref.current, track2Ref.current));
-        track2Ref.current.removeEventListener('ended', () => handleTrackEnd(track2Ref.current, track1Ref.current));
-      }
+      [track1Ref, track2Ref].forEach(ref => ref.current?.removeEventListener('ended', () => {}));
     };
   }, []);
 
   return (
     <div>
-      <audio ref={track1Ref} src="/music/reencoded-count-0.mp3" loop={false} />
-      <audio ref={track2Ref} src="/music/numbers-duplessi.mp3" loop={false} />
+      <audio ref={track1Ref} src="/music/reencoded-count-0.mp3" />
+      <audio ref={track2Ref} src="/music/numbers-duplessi.mp3" />
     </div>
   );
 };

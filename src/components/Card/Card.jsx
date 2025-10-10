@@ -10,6 +10,7 @@ import engineerAnimation from '../../assets/videos/engineer.mp4';
 import infiltratorAnimation from '../../assets/videos/infiltrator.mp4';
 import leaderAnimation from '../../assets/videos/leader.mp4';
 import medicAnimation from '../../assets/videos/medic.mp4';
+import survivorAnimation from '../../assets/videos/survivor.mp4';
 
 const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
   const sharpshooterRef = useRef(null);
@@ -20,6 +21,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
   const infiltratorRef = useRef(null);
   const medicRef = useRef(null);
   const leaderRef = useRef(null);
+  const survivorRef = useRef(null);
 
   const videoMap = {
     Shadow: { src: shadowAnimation },
@@ -31,6 +33,7 @@ const Card = ({ slayer, isCrew, onAliasClick, onButtonClick, isZoomed }) => {
     Infiltrator: { src: infiltratorAnimation, ref: infiltratorRef },
     Leader: { src: leaderAnimation, ref: leaderRef },
     Medic: { src: medicAnimation, ref: medicRef },
+    Survivor: { src: survivorAnimation, ref: survivorRef },
   };
 
   useEffect(() => {
